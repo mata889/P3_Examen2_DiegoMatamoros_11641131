@@ -1,6 +1,6 @@
 #include <fstream>
-
-#include <string.h>
+#include <istream>
+#include <string>
 #include <iostream>
 #include <cstdlib>
 #include "Archivo.h"
@@ -22,12 +22,12 @@ int main(){
 				nombreArchivo+=".txt";
 				bool resp=true;
 				while (resp==true) {
-					cin.clear();
 					cout<<"Introduzca lo que va a escribir"<<endl;
-
+					cin.ignore();
 					getline(cin,escribir);
+					//getline(cin,escribir);
 					//escribir+=escri;
-					cout<<escribir<<endl;
+					//cout<<escribir<<endl;
 					int menuLinea;
 					cout<<"1.Desea escribir otra linea\n2.Dejarlo"<<endl;
 					cin>>menuLinea;
@@ -43,10 +43,6 @@ int main(){
 				Archivo archivo(escribir);
 				salida<<archivo;
 				salida.close();
-
-
-
-
 			}break;
 			case 2:{
 				string archivoTexto;
