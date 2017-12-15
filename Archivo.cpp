@@ -1,6 +1,6 @@
 #include "Archivo.h"
 
-istream& operator>>(istream& in, Archivo& archive){
+istream& operator>>(istream& in,const Archivo& archive){
   string buffer;
   //leer una línea del archivo
   getline(in,buffer);
@@ -13,7 +13,7 @@ istream& operator>>(istream& in, Archivo& archive){
 
       switch(cont){
         case 0:
-          archive.texto = parse;
+          //archive.texto = parse;
            break;
       }
       cont++;

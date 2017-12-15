@@ -2,12 +2,12 @@
 
 ArrayStack::ArrayStack(int pSize){
 	size=pSize;
-	array=new string;
+	array=new string[size];
 	availPos=0;
 }
 bool ArrayStack::push(string dato){
 	bool retval=false;
-	if (size<=5) {
+
 		if (availPos==size) {
 			return retval;
 		}else{
@@ -15,7 +15,7 @@ bool ArrayStack::push(string dato){
 			retval=true;
 			return retval;
 		}
-	}
+
 
 }
 
