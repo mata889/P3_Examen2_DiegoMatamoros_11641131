@@ -35,3 +35,12 @@ string ArrayStack::pop(){
 ArrayStack::~ArrayStack(){
 	delete[] array;
 }
+string ArrayStack::posicion(int pos){
+
+    string linea=array[pos];
+    return linea;
+}
+void ArrayStack::sustitucion(string nuevo, int pos){
+
+    array[pos] = nuevo;
+}

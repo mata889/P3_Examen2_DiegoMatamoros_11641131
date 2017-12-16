@@ -75,19 +75,68 @@ int main(){
 				ArrayStack* contenido = new ArrayStack(cont);
 
 				ifstream myfile (nombreArchivo.c_str());
-
+				bool seguir=true;
 				if (myfile.is_open()){
+					int cuantasVeces=0;
 
-					while ( getline (myfile,line) ){
+						while (seguir &&cuantasVeces<5) {
+							if (cuantasVeces<5) {
+								int contador=0;
+								while ( getline (myfile,line) ){
+									cout<<contador<<")";
+									cout << line << '\n';
+									contenido->push(line);
+									contador++;
+								}
 
-						cout << line << '\n';
-						contenido->push(line);
+								int pos;
+								cout<<"Que linea desea editar?"<<endl;
+								cin>>pos;
+
+								string lugar = contenido->posicion(pos);
+								cout<<"usted escogio:"<<lugar<<endl;
+
+								string cambio;
+
+								cout<<"Ingrese lo que desea sustituir"<<endl;
+								cin.ignore();
+								getline(cin, cambio);
+								contenido->sustitucion(cambio, pos);
+								lugar = contenido->posicion(pos);
+								int menuChiqui;
+								cout<<"1.Quiere seguir cambiando cosas?? o 2.Quiere guardarlo"<<endl;
+								cin>>menuChiqui;
+								cuantasVeces++;
+								if (menuChiqui==1) {
+									seguir=true;
+								}else{
+									seguir=false;
+								}
+							}
+
+
+						}
+						if (cuantasVeces>=5) {
+							cout<<"Se paso del limite,solo puede hacer 5 veces"<<endl;
+						}
+
+
+					//aqui es donde se guarda en el archvio
+					string escribir;
+					for (size_t i = 0; i < cont; i++) {
+						escribir+=contenido->posicion(i);
+						if (i==cont-1) {
+
+						}else{
+							escribir+="\n";
+						}
+
 					}
-
-					while (!contenido->isEmpty()) {
-						cout<<contenido->pop()<<" ";
-					}
-					cout<<endl;
+					ofstream salida(nombreArchivo.c_str(), ios::out | ios::trunc );
+					Archivo archivo(escribir);
+					salida<<archivo;
+					salida.close();
+					//cout<<lugar<<endl;
 					//cout<<"entro"<<endl;
 					delete contenido;
 
